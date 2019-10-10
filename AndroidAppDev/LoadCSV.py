@@ -1,12 +1,12 @@
 import csv
 with open('Buildings.csv', newline='') as csvfile:
      spamreader = csv.reader(csvfile, delimiter=',', quotechar='|')
-     listOfLists = []
+     geoData = [[]]
      counter = 0
-     print(type(listOfLists[0]) == "list")
-     '''for row in spamreader:
+     print(isinstance(geoData, list))
+     for row in spamreader:
          for x in row:
-             listOfLists[counter].append(x)
+             geoData[counter].append(x)
          counter += 1
-     print(listOfLists)
-'''
+         geoData.append([])
+    # print(listOfLists)
