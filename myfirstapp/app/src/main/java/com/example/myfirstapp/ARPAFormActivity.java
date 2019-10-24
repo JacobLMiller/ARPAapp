@@ -258,6 +258,8 @@ public class ARPAFormActivity extends AppCompatActivity {
 
     //SuppressLint suppresses an error we'd get for using clearApplicationUserData because its not found below API 15 but
     //we're only checking for permissions on APIs 23 or above so it doesn't matter
+
+    //***Jacob*** Review this
     @SuppressLint("NewApi")
     private boolean areaPermissionsDenied(){
         for(int i = 0; i < PERMISSIONS_COUNT; i++){
@@ -284,7 +286,8 @@ public class ARPAFormActivity extends AppCompatActivity {
         }
     }
 
-    //SO a LOT of this code is useless but right now I'm afraid I'll break it if I remove anything so instead of trying to make it prettier I'm just going to leave everything here and say it's fine
+    //SO a LOT of this code is useless but right now I'm afraid I'll break it if I remove anything so instead of trying to
+    // make it prettier I'm just going to leave everything here and say it's fine
     private boolean isCameraInitialized;
 
     private Camera mCamera = null;

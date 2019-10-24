@@ -61,4 +61,5 @@ def main():
     geoData = ConvertCSVToList(fileToOpen)
     geoDataDict = ListToDict(geoData)
 
+    print(geoDataDict)
 main()

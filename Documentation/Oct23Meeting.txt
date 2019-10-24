@@ -1,0 +1,7 @@
+Add to bottom of notification if the site has human remains.
+Human remain information is already there somewhere.
+
+In two weeks experts will be in the meeting to offer assitance and talk shop. 
+
+Add a button somehwere on the app. An about button for credits, documentation,
+etc. 

@@ -49,6 +49,7 @@ public class DisplayMessageActivity extends FragmentActivity implements OnMapRea
     //Here's where all the junk starts...
     @Override
     public void onMapReady(GoogleMap googleMap) {
+        int x = 55;
 
         //Makes it where the google maps api doesn't start by viewing the entire world.
         float zoomLevel = 18.0f;
