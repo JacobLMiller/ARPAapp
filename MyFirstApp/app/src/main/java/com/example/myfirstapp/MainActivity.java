@@ -5,6 +5,7 @@ import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 
 import android.app.Notification;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -55,5 +56,11 @@ public class MainActivity extends AppCompatActivity {
                 .build();
 
         notificationManager.notify(2, notification);
+    }
+
+    public void generatePDF(View v)
+    {
+        Intent i = new Intent(this, PdfActivity.class);
+        startActivity(i);
     }
 }
