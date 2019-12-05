@@ -16,7 +16,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".ARPAFormActivity"
-            android:configChanges="orientation|screenSize">></activity>
+            android:configChanges="orientation|screenSize">
+        </activity>
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
