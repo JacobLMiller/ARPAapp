@@ -30,13 +30,20 @@
                 android:name="android.support.PATENT_ACTIVITY"
                 android:value=".MainActivity" />
         </activity>
+        <activity android:name=".PdfActivity"></activity>
+
         <activity android:name=".MainActivity"
             android:configChanges="orientation|screenSize">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
         </activity>
     </application>
 
