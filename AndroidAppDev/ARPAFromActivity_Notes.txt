@@ -1,4 +1,0 @@
-Make ARPAFormActivity a super class to camera and form activities.
-
-Camera be an object we can instantiate and run.
-Organize other code as needed.
