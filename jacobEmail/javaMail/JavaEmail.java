@@ -1,4 +1,4 @@
-package com.javapapers.java;
+//package email;
 
 import java.util.Properties;
 
