@@ -59,8 +59,8 @@ public class JavaEmail {
 	public void sendEmail() throws AddressException, MessagingException {
 
 		String emailHost = "smtp.gmail.com";
-		String fromUser = "jakelmickey";//just the id alone without @gmail.com
-		String fromUserEmailPassword = "e@cJ67rQ";
+		String fromUser = "justatest23579";//just the id alone without @gmail.com
+		String fromUserEmailPassword = "EX3LWK2SK7mr37d";
 
 		Transport transport = mailSession.getTransport("smtp");
 
