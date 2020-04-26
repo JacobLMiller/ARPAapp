@@ -1,6 +1,7 @@
 package com.example.myfirstapp;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 import androidx.core.content.FileProvider;
@@ -40,7 +41,6 @@ import java.text.SimpleDateFormat;
 import java.util.Locale;
 
 
-
 public class PdfActivity extends AppCompatActivity {
 
     private static  final int STORAGE_CODE = 1000;
@@ -62,6 +62,7 @@ public class PdfActivity extends AppCompatActivity {
     CheckBox mCheckbox5;
     CheckBox mCheckbox6;
     CheckBox mCheckbox7;
+    String pdfToDelete;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -115,11 +116,14 @@ public class PdfActivity extends AppCompatActivity {
         });
     }
 
+    //As the method name might suggest, this is where we send our email with the attachment
     private void sendEmail(String mFilePath){
         try {
+            //Create a URI for our PDF
             File pdfToSend = new File(mFilePath);
-            Uri URI = FileProvider.getUriForFile(this, "com.myownapp.provider", pdfToSend);
+            Uri URI = FileProvider.getUriForFile(this, "com.USACEARPA.provider", pdfToSend);
 
+            //Creating an intent, so we can pass our email + attachment to an email client of choice
             Intent it = new Intent(Intent.ACTION_SEND);
             it.setType("application/pdf");
             it.putExtra(Intent.EXTRA_EMAIL, new String[]{"millerjl2@student.swosu.edu"});
@@ -127,7 +131,11 @@ public class PdfActivity extends AppCompatActivity {
             it.putExtra(Intent.EXTRA_TEXT, "So guys, we did it");
             it.putExtra(Intent.EXTRA_STREAM, URI);
 
+            pdfToDelete = mFilePath;
+
             startActivity(it);
+            startActivityForResult(it, 1);
+
         }
         catch(Throwable t)
         {
@@ -135,6 +143,18 @@ public class PdfActivity extends AppCompatActivity {
         }
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+
+        File deletingFile = new File(pdfToDelete);
+
+        //Cleanup, delete file once we're done with it.
+        if(deletingFile.delete()) {
+            assert true;
+        }else{
+            Toast.makeText(this, "Failed to delete file successfully", Toast.LENGTH_LONG).show();
+        }
+    }
 
     private void savePdf()
     {
@@ -332,6 +352,7 @@ public class PdfActivity extends AppCompatActivity {
             Toast.makeText(this, e.getMessage(), Toast.LENGTH_LONG).show();
         }
         sendEmail(mFilePath);
+
     }
 
     //handle permission result
