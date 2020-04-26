@@ -43,8 +43,8 @@ public class JavaEmail {
 		String emailSubject = "Java Email";
 		String emailBody = "This is an email sent by JavaMail api.";
 
-		mailSession = Session.getDefaultInstance(emailProperties, null);
-		emailMessage = new MimeMessage(mailSession);
+		Session mailSession = Session.getDefaultInstance(emailProperties, null);
+		MimeMessage mailMessage = new MimeMessage(mailSession);
 
 		for (int i = 0; i < toEmails.length; i++) {
 			emailMessage.addRecipient(Message.RecipientType.TO, new InternetAddress(toEmails[i]));

@@ -43,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+        /*super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
         super.onCreate(savedInstanceState);
@@ -52,7 +52,8 @@ public class MainActivity extends AppCompatActivity {
         notificationManager = NotificationManagerCompat.from(this);
 
         editTextTitle = findViewById(R.id.edit_text_title);
-        editTextMessage = findViewById(R.id.edit_text_message);
+        editTextMessage = findViewById(R.id.edit_text_message); */
+        generatePDF();
     }
 
     public void chooseSite(View view){

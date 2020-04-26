@@ -2,9 +2,13 @@ package com.example.myfirstapp;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
+import androidx.core.content.FileProvider;
 
 import android.Manifest;
+import android.net.Uri;
 import android.content.pm.PackageManager;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
@@ -29,9 +33,13 @@ import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
 import com.itextpdf.text.pdf.StringUtils;
 
+import java.io.File;
 import java.io.FileOutputStream;
+import java.net.URI;
 import java.text.SimpleDateFormat;
 import java.util.Locale;
+
+
 
 public class PdfActivity extends AppCompatActivity {
 
@@ -107,14 +115,37 @@ public class PdfActivity extends AppCompatActivity {
         });
     }
 
+    private void sendEmail(String mFilePath){
+        try {
+            File pdfToSend = new File(mFilePath);
+            Uri URI = FileProvider.getUriForFile(this, "com.myownapp.provider", pdfToSend);
+
+            Intent it = new Intent(Intent.ACTION_SEND);
+            it.setType("application/pdf");
+            it.putExtra(Intent.EXTRA_EMAIL, new String[]{"millerjl2@student.swosu.edu"});
+            it.putExtra(Intent.EXTRA_SUBJECT, "This is from me");
+            it.putExtra(Intent.EXTRA_TEXT, "So guys, we did it");
+            it.putExtra(Intent.EXTRA_STREAM, URI);
+
+            startActivity(it);
+        }
+        catch(Throwable t)
+        {
+            Toast.makeText(this, t.getMessage(), Toast.LENGTH_LONG).show();
+        }
+    }
+
+
     private void savePdf()
     {
         Document mDoc = new Document();
         //pdf filename
         String mFileName = new SimpleDateFormat("yyyyMMdd_HHmmss",
                 Locale.getDefault()).format((System.currentTimeMillis()));
+
         //pdf file path
-        String mFilePath = Environment.getExternalStorageDirectory() +  "/" + mFileName + ".pdf";
+        String mFilePath =  Environment.getExternalStorageDirectory() +  "/" + mFileName + ".pdf";
+        Toast.makeText(this, mFilePath, Toast.LENGTH_SHORT).show();
 
         try
         {
@@ -294,12 +325,13 @@ public class PdfActivity extends AppCompatActivity {
             mDoc.add(new Paragraph("Additional Comments:", boldFont));
             mDoc.add(new Paragraph(mText, baseFont));
             mDoc.close();
-            Toast.makeText(this, mFileName + ".pdf\nis saved to\n" + mFilePath, Toast.LENGTH_SHORT).show();
+           // Toast.makeText(this, mFileName + ".pdf\nis saved to\n" + mFilePath, Toast.LENGTH_SHORT).show();
         }
         catch (Exception e)
         {
-            Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, e.getMessage(), Toast.LENGTH_LONG).show();
         }
+        sendEmail(mFilePath);
     }
 
     //handle permission result
@@ -318,9 +350,12 @@ public class PdfActivity extends AppCompatActivity {
                 else
                 {
                     //permission was denied from popup, show error message
-                    Toast.makeText(this, "Permission denied", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, "error", Toast.LENGTH_SHORT).show();
                 }
             }
         }
     }
+
+
+
 }
