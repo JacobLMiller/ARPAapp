@@ -60,7 +60,7 @@ public class JavaEmail {
 
 		String emailHost = "smtp.gmail.com";
 		String fromUser = "justatest23579";//just the id alone without @gmail.com
-		String fromUserEmailPassword = "EX3LWK2SK7mr37d";
+		String fromUserEmailPassword = "";
 
 		Transport transport = mailSession.getTransport("smtp");
 
