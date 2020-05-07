@@ -116,19 +116,22 @@ public class PdfActivity extends AppCompatActivity {
         });
     }
 
-    //As the method name might suggest, this is where we send our email with the attachment
+    //This is where we send our email with the attachment
     private void sendEmail(String mFilePath){
         try {
             //Create a URI for our PDF
             File pdfToSend = new File(mFilePath);
             Uri URI = FileProvider.getUriForFile(this, "com.USACEARPA.provider", pdfToSend);
 
+            String mFileName = new SimpleDateFormat("yyyyMMdd",
+                    Locale.getDefault()).format((System.currentTimeMillis()));
+
             //Creating an intent, so we can pass our email + attachment to an email client of choice
             Intent it = new Intent(Intent.ACTION_SEND);
             it.setType("application/pdf");
-            it.putExtra(Intent.EXTRA_EMAIL, new String[]{"millerjl2@student.swosu.edu"});
-            it.putExtra(Intent.EXTRA_SUBJECT, "This is from me");
-            it.putExtra(Intent.EXTRA_TEXT, "So guys, we did it");
+            it.putExtra(Intent.EXTRA_EMAIL, new String[]{"exampleEmail@example.com"});
+            it.putExtra(Intent.EXTRA_SUBJECT, mFileName + " Report");
+            it.putExtra(Intent.EXTRA_TEXT, "Sent from ARPA mobile device.");
             it.putExtra(Intent.EXTRA_STREAM, URI);
 
             pdfToDelete = mFilePath;
